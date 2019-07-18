@@ -18,7 +18,7 @@ namespace WebApi_TokenBased.Controllers
             return Ok("The server time is: " + DateTime.Now.ToString() );
         }
 
-        [Authorize]
+        [CustomAuthorize]
         [HttpGet]
         [Route("api/data/getforauthenticated")]
         public IHttpActionResult GetForAuthenticated()
@@ -26,7 +26,7 @@ namespace WebApi_TokenBased.Controllers
             var identity = (ClaimsIdentity)User.Identity;
             return Ok("Hello" + identity.Name);
         }
-        [Authorize(Roles="admin")]
+        [CustomAuthorize(Roles = "admin")]
         [HttpGet]
         [Route("api/data/getforadmin")]
         public IHttpActionResult GetForAdminAuthenticated()
